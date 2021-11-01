@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import ColorList from "./ColorList";
+import Color from "./Color";
+import NewColorForm from "./NewColorForm";
 
-function App() {
+function App({ dogs }) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/colors/new">
+            <NewColorForm />
+          </Route>
+          <Route exact path="/colors">
+            <ColorList />
+          </Route>
+          <Route path="/colors/:color">
+            <Color />
+          </Route>
+          <Redirect to="/colors" />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
